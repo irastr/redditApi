@@ -13,7 +13,8 @@ import {
   Text,
   TouchableOpacity,
   FlatList,
-  ActivityIndicator
+  ActivityIndicator,
+  Image
 } from 'react-native';
 import { WebView } from 'react-native-webview';
 
@@ -73,17 +74,22 @@ class HomeScreen extends React.Component {
     });
   }
 
+  renderHeader = () => {
+    return <Image style={styles.img} source={require('./src/img/reddit.jpg')}/>
+  };
+
   renderList = () => {
     return (
         <FlatList
             data={this.state.data}
             renderItem={({item, index}) => this.renderItem(item, index)}
             keyExtractor={(item, index) => String(index)}
+            ListHeaderComponent={() => this.renderHeader()}
         />
     );
   };
 
-  renderItem = (item, index) => {
+  renderItem = (item) => {
     return (
         <TouchableOpacity
             style={styles.itemWrap}
@@ -97,7 +103,7 @@ class HomeScreen extends React.Component {
 
   render() {
     return (
-        this.state.isLoading ? <ActivityIndicator size="large" color='#ed8240' />: this.renderList()
+        this.state.isLoading ? <ActivityIndicator size="large" color='#ed8240' style={{marginTop: 20}} /> : this.renderList()
     );
   }
 }
@@ -148,7 +154,7 @@ class DetailsScreen extends React.Component {
   render() {
     return (
         this.state.isLoading ?
-            <ActivityIndicator size="large" color='#ed8240'/> : this.renderBody()
+            <ActivityIndicator size="large" color='#ed8240' style={{marginTop: 20}}/> : this.renderBody()
     );
   }
 }
@@ -189,6 +195,11 @@ const styles = StyleSheet.create({
     fontWeight: '500',
     textAlign: 'center',
     padding: 10
+  },
+  img: {
+    height: 100,
+    resizeMode: 'contain',
+    alignSelf: 'center'
   }
 });
 
