@@ -12,8 +12,6 @@ import {styles} from '../styles';
 class DetailsScreen extends React.Component {
     constructor(props: Props) {
         super(props);
-        this.counter = {};
-        this.timers = {};
         this.state = {
             story: {},
             isLoading: false,

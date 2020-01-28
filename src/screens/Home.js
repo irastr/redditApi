@@ -13,8 +13,6 @@ import {styles} from '../styles';
 class HomeScreen extends React.Component {
     constructor(props: Props) {
         super(props);
-        this.counter = {};
-        this.timers = {};
         this.state = {
             data: [],
             isLoading: false,
